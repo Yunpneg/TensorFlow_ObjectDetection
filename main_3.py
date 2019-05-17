@@ -3,16 +3,16 @@
 import numpy as np
 import tensorflow as tf
 
-from utils import label_map_util
-from utils import visualization_utils as vis_util
+import label_map_util
+import visualization_utils as vis_util
 
 import cv2
 cap = cv2.VideoCapture('绝地逃亡.mov')
 ret, image_np = cap.read()
 out = cv2.VideoWriter('output.mov', -1, cap.get(cv2.CAP_PROP_FPS), (image_np.shape[1], image_np.shape[0]))
 
-PATH_TO_CKPT = 'ssd_mobilenet_v1_coco_2017_11_17/frozen_inference_graph.pb'
-PATH_TO_LABELS = 'ssd_mobilenet_v1_coco_2017_11_17/mscoco_label_map.pbtxt'
+PATH_TO_CKPT = 'frozen_inference_graph.pb'
+PATH_TO_LABELS = 'mscoco_label_map.pbtxt'
 NUM_CLASSES = 90
 
 detection_graph = tf.Graph()
