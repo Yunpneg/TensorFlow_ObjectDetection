@@ -5,11 +5,11 @@ import tensorflow as tf
 import matplotlib.pyplot as plt
 from PIL import Image
 
-from utils import label_map_util
-from utils import visualization_utils as vis_util
+import label_map_util
+import visualization_utils as vis_util
 
-PATH_TO_CKPT = 'ssd_mobilenet_v1_coco_2017_11_17/frozen_inference_graph.pb'
-PATH_TO_LABELS = 'ssd_mobilenet_v1_coco_2017_11_17/mscoco_label_map.pbtxt'
+PATH_TO_CKPT = 'frozen_inference_graph.pb'
+PATH_TO_LABELS = 'mscoco_label_map.pbtxt'
 NUM_CLASSES = 90
 
 detection_graph = tf.Graph()
@@ -27,7 +27,7 @@ def load_image_into_numpy_array(image):
 	(im_width, im_height) = image.size
 	return np.array(image.getdata()).reshape((im_height, im_width, 3)).astype(np.uint8)
 	
-TEST_IMAGE_PATHS = ['test_images/image1.jpg', 'test_images/image2.jpg']
+TEST_IMAGE_PATHS = ['image1.jpg', 'image2.jpg']
 
 with detection_graph.as_default():
 	with tf.Session(graph=detection_graph) as sess:
