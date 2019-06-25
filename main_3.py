@@ -34,10 +34,10 @@ with detection_graph.as_default():
 	    detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
 	    num_detections = detection_graph.get_tensor_by_name('num_detections:0')
 	    while cap.isOpened():
-	    	ret, image_np = cap.read()
+	    	ret, image_np = cap.read() #不断读取摄像头中的图片
 	    	if len((np.array(image_np)).shape) == 0:
 	    		break
-
+		# 默认opencv获取的图片颜色通道是BGR, 要转换成RGB
 	    	image_np = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
 	    	image_np_expanded = np.expand_dims(image_np, axis=0)
 	    	
